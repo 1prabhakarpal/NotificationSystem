@@ -1,0 +1,37 @@
+# Maven / Gradle build output
+target/
+build/
+.gradle/
+
+# Java class files
+*.class
+
+# Log files
+*.log
+
+# Spring Boot executable jars
+*.jar
+
+# IDE specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# VS Code settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Docker files (if generated)
+Dockerfile
+docker-compose.override.yml
+/volumes
