@@ -1,6 +1,7 @@
 package com.notofication.api.utils;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 import org.springframework.util.ObjectUtils;
 
@@ -21,6 +22,10 @@ public final class CommonUtils {
 
     public static boolean isEmpty(final Object input) {
         return ObjectUtils.isEmpty(input);
+    }
+
+    public UUID generateUUID() {
+        return UUID.randomUUID();
     }
 
 }
