@@ -1,3 +1,15 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: Notification-Service
+
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017/notification-service
+      database: notification-service
+
+  jpa:
+    hibernate:
+      ddl-auto: update
