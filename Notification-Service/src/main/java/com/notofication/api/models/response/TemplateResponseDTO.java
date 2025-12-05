@@ -2,6 +2,8 @@ package com.notofication.api.models.response;
 
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
+
 import com.notofication.api.models.entities.Template;
 
 import lombok.Data;
@@ -13,10 +15,7 @@ public class TemplateResponseDTO {
     private Map<String, String> templateVariables;
 
     public TemplateResponseDTO(Template template) {
-        if (template.getId() != null) {
-            this.id = template.getId().toString();
-        }
-        this.name = template.getName();
-        this.templateVariables = template.getTemplateVariables();
+        BeanUtils.copyProperties(template, this);
+        setId(template.getId().toString());
     }
 }

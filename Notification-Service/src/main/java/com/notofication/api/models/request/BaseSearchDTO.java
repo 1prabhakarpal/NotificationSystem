@@ -88,7 +88,7 @@ public abstract class BaseSearchDTO<T> {
         Class<?> currentClass = entityClass;
         while (currentClass != null) {
             try {
-                return currentClass.getField(fieldName);
+                return currentClass.getDeclaredField(fieldName);
             } catch (NoSuchFieldException e) {
                 currentClass = currentClass.getSuperclass();
             }
