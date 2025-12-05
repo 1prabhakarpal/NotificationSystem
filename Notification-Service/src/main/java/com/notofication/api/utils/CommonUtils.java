@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.util.ObjectUtils;
 
+import com.notofication.api.models.context.NotificationContextHolder;
+
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -26,6 +28,10 @@ public final class CommonUtils {
 
     public UUID generateUUID() {
         return UUID.randomUUID();
+    }
+
+    public static String getTenantId() {
+        return NotificationContextHolder.getContext().tenantId();
     }
 
 }

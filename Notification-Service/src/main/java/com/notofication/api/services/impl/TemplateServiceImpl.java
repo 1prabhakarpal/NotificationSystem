@@ -37,7 +37,7 @@ class TemplateServiceImpl implements TemplateService {
         Template template = Template.builder()
                 .id(CommonUtils.generateUUID())
                 .name(request.getName())
-                .tenantId(UUID.fromString(holder.tenantId()))
+                .tenantId(UUID.fromString(CommonUtils.getTenantId()))
                 .build();
         BeanUtils.copyProperties(request, template);
         template.entityCreated();

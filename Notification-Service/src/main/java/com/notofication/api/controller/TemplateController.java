@@ -12,6 +12,8 @@ import com.notofication.api.services.interfaces.TemplateService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
@@ -25,5 +27,11 @@ public class TemplateController {
         TemplateResponse template = templateService.createTemplate(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(template);
     }
+
+    // @GetMapping("/all")
+    // public ResponseEntity<FilterTemplateResponse>
+    // getAllTemplates(TemplateFilterRequest request) {
+    // return ResponseEntity.ok().body(templateService.getAllTemplates(request));
+    // }
 
 }
