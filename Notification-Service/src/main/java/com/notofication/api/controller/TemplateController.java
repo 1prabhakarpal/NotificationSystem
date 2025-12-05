@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.notofication.api.models.request.CreateTemplateRequest;
+import com.notofication.api.models.request.TemplateFilterRequest;
+import com.notofication.api.models.response.FilterTemplateRespose;
 import com.notofication.api.models.response.TemplateResponse;
 import com.notofication.api.services.interfaces.TemplateService;
 
@@ -28,10 +30,9 @@ public class TemplateController {
         return ResponseEntity.status(HttpStatus.CREATED).body(template);
     }
 
-    // @GetMapping("/all")
-    // public ResponseEntity<FilterTemplateResponse>
-    // getAllTemplates(TemplateFilterRequest request) {
-    // return ResponseEntity.ok().body(templateService.getAllTemplates(request));
-    // }
+    @GetMapping("/filter")
+    public ResponseEntity<FilterTemplateRespose> filterTemplate(TemplateFilterRequest request) {
+        return ResponseEntity.ok().body(templateService.filterTemplate(request));
+    }
 
 }

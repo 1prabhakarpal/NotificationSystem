@@ -3,6 +3,9 @@ package com.notofication.api.dao.impl;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.notofication.api.dao.interfaces.TemplateDao;
@@ -26,5 +29,10 @@ class TemplateDaoImpl implements TemplateDao {
     @Override
     public Template save(final Template template) {
         return templateRepository.save(template);
+    }
+
+    @Override
+    public Page<Template> filterTemplate(final Example<Template> example, final PageRequest pageRequest) {
+        return templateRepository.findAll(example, pageRequest);
     }
 }

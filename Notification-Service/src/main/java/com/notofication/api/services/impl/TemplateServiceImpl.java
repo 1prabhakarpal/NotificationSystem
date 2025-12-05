@@ -1,8 +1,11 @@
 package com.notofication.api.services.impl;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,10 @@ import com.notofication.api.models.context.NotificationContext;
 import com.notofication.api.models.context.NotificationContextHolder;
 import com.notofication.api.models.entities.Template;
 import com.notofication.api.models.request.CreateTemplateRequest;
+import com.notofication.api.models.request.TemplateFilterRequest;
+import com.notofication.api.models.response.FilterTemplateRespose;
 import com.notofication.api.models.response.TemplateResponse;
+import com.notofication.api.models.response.TemplateResponseDTO;
 import com.notofication.api.services.interfaces.TemplateService;
 import com.notofication.api.utils.CommonUtils;
 
@@ -23,7 +29,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-class TemplateServiceImpl implements TemplateService {
+public class TemplateServiceImpl implements TemplateService {
 
     private final TemplateDao templateDao;
 
@@ -43,6 +49,13 @@ class TemplateServiceImpl implements TemplateService {
         template.entityCreated();
         templateDao.save(template);
         return new TemplateResponse(template);
+    }
+
+    @Override
+    public FilterTemplateRespose filterTemplate(TemplateFilterRequest request) {
+        Page<Template> templates = templateDao.filterTemplate(request.buildSearch(), request.buildPageRequest());
+        List<TemplateResponseDTO> templateResponseDTOs = templates.stream().map(TemplateResponseDTO::new).toList();
+        return new FilterTemplateRespose(templateResponseDTOs, templates.getTotalElements(), templates.hasNext());
     }
 
 }
