@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 
 import com.notofication.api.constants.ErrorConstants;
 import com.notofication.api.exception.ValidationException;
+import com.notofication.api.models.context.NotificationContextHolder;
 import com.notofication.api.utils.CommonUtils;
 
 import static java.util.Optional.ofNullable;
@@ -72,6 +73,10 @@ public abstract class BaseSearchDTO<T> {
     }
 
     private void injectTenantId(final Object instance) {
+        if (NotificationContextHolder.getContext().ignoreTenantIdInjection()) {
+            System.out.println("Tenant ID injection is ignored");
+            return;
+        }
         try {
             Field field = getField(instance.getClass(), "tenantId");
             field.setAccessible(true);
